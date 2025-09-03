@@ -1,0 +1,1 @@
+# sharable-renovate-config
