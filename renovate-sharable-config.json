@@ -1,0 +1,55 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
+  "extends": ["config:recommended"],
+
+  "labels": ["renovate-sharable-dependencies"],
+
+  "automerge": true,
+  "automergeType": "pr",
+  "platformAutomerge": true,
+  "rebaseWhen": "conflicted",
+
+  "packageRules": [
+    {
+      "matchDatasources": ["npm"],
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "dependencies (non-major)"
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "devDependencies (non-major)"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "versioning": "loose"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchDepNames": [
+        "actions/deploy-pages",
+        "actions/upload-pages-artifact",
+        "actions/upload-artifact"
+      ],
+      "enabled": false
+    }
+  ],
+
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/.ya?ml$/", "/.sh$/", "/.json$/"],
+      "matchStrings": [
+        "(?<depName>[a-z0-9.-]+(?:/[a-z0-9.-]+)*):(?<currentValue>[a-z0-9][a-z0-9._-]*)"
+      ],
+      "depNameTemplate": "{{depName}}",
+      "currentValueTemplate": "{{currentValue}}",
+      "datasourceTemplate": "docker"
+    }
+  ]
+}
