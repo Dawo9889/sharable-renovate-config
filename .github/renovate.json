@@ -1,3 +1,3 @@
 {
-    "extends": ["Dawo9889/sharable-renovate-config//.github/renovate-sharable-config.json"]
+    "extends": ["Dawo9889/sharable-renovate-config//.github/renovate-sharable-config"]
 }
