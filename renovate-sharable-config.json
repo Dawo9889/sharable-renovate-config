@@ -3,7 +3,7 @@
 
   "extends": ["config:recommended"],
 
-  "labels": ["renovate-sharable-dependencies"],
+  "labels": ["renovate-dependencies"],
 
   "automerge": true,
   "automergeType": "pr",
@@ -16,27 +16,58 @@
       "minimumReleaseAge": "3 days"
     },
     {
+      "matchManagers": ["npm"],
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["patch", "minor"],
       "groupName": "dependencies (non-major)"
     },
     {
+      "matchManagers": ["npm"],
       "matchDepTypes": ["devDependencies"],
       "matchUpdateTypes": ["patch", "minor"],
       "groupName": "devDependencies (non-major)"
     },
     {
-      "matchDatasources": ["docker"],
-      "versioning": "loose"
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions",
+      "separateMajorMinor": true
     },
     {
       "matchManagers": ["github-actions"],
       "matchDepNames": [
+        "wechuli/allcheckspassed",
         "actions/deploy-pages",
         "actions/upload-pages-artifact",
         "actions/upload-artifact"
       ],
       "enabled": false
+    },
+    {
+      "matchManagers": ["gomod"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "go modules (non-major)",
+      "postUpdateOptions": [
+        "gomodTidy",
+        "gomodUpdateImportPaths"
+      ]
+    },
+    {
+      "matchManagers": ["gomod"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "go modules (major)",
+      "postUpdateOptions": [
+        "gomodTidy",
+        "gomodUpdateImportPaths"
+      ]
+    },
+    {
+    "matchManagers": ["pip_requirements"],
+    "matchUpdateTypes": ["patch", "minor"],
+    "groupName": "python deps (non-major)"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "versioning": "loose"
     }
   ],
 
