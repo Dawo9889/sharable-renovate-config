@@ -18,3 +18,4 @@ jobs:
         uses: renovatebot/github-action@v41.0.1
         with:
           command: renovate-config-validator
+          token: ${{ secrets.GITHUB_TOKEN }}
