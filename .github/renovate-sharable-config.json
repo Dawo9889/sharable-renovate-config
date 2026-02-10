@@ -56,8 +56,7 @@
     {
       "matchManagers": ["gomod"],
       "matchUpdateTypes": ["major"],
-      "groupName": "go modules (major)",
-      "postUpdateOptions": [
+      "groupName": "go modules (major)",      "postUpdateOptions": [
         "gomodTidy",
         "gomodUpdateImportPaths"
       ]
