@@ -1,5 +1,5 @@
 # Simple Python Dockerfile for testing Renovate with digests
-FROM python:3.11-slim@sha256:8c8c5a2b6e5d0e8e9f8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e
+FROM python:3.14-slim@sha256:486b8092bfb12997e10d4920897213a06563449c951c5506c2a2cfaf591c599f
 
 WORKDIR /app
 
