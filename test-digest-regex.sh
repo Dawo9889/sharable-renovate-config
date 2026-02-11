@@ -17,7 +17,7 @@ echo "Image: $IMAGE1"
 echo "$IMAGE1" | grep -E "$PATTERN" > /dev/null && echo "✅ MATCH!" || echo "❌ NO MATCH"
 echo ""
 
-echo "Test 2: Image with digest"  
+echo "Test 2: Image with digest"
 echo "Image: $IMAGE2"
 echo "$IMAGE2" | grep -E "$PATTERN" > /dev/null && echo "✅ MATCH!" || echo "❌ NO MATCH"
 echo ""
