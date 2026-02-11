@@ -1,0 +1,12 @@
+# Simple Python Dockerfile for testing Renovate with digests
+FROM python:3.11-slim@sha256:8c8c5a2b6e5d0e8e9f8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["python", "app.py"]

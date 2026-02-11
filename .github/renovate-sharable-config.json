@@ -1,7 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
 
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended",
+    "customManagers:dockerfileVersions",
+    "helpers:pinGitHubActionDigests"
+  ],
 
   "labels": ["renovate-dependencies"],
 
@@ -9,76 +13,74 @@
   "automergeType": "pr",
   "platformAutomerge": true,
   "rebaseWhen": "conflicted",
+
   "ignorePaths": [
-    "docs/**"
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/test*/**",
+    "**/cypress/**"
+
   ],
+
   "packageRules": [
     {
-      "matchDatasources": ["npm"],
-      "minimumReleaseAge": "3 days"
-    },
-    {
-      "matchManagers": ["npm"],
-      "matchDepTypes": ["dependencies"],
-      "matchUpdateTypes": ["patch", "minor"],
-      "groupName": "dependencies (non-major)"
-    },
-    {
-      "matchManagers": ["npm"],
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["patch", "minor"],
-      "groupName": "devDependencies (non-major)"
+      "matchManagers": ["gomod"],
+      "groupName": "All Go dependencies",
+      "rangeStrategy": "bump",
+      "postUpdateOptions": ["gomodUpdateImportPaths"]
     },
     {
       "matchManagers": ["github-actions"],
       "groupName": "github actions",
-      "separateMajorMinor": true
+      "separateMajorMinor": true,
+      "prPriority": 5
     },
     {
-      "matchManagers": ["github-actions"],
-      "matchDepNames": [
-        "wechuli/allcheckspassed",
-        "actions/deploy-pages",
-        "actions/upload-pages-artifact",
-        "actions/upload-artifact"
-      ],
-      "enabled": false
+      "matchManagers": ["pip_requirements"],
+      "groupName": "python dependencies"
     },
     {
-      "matchManagers": ["gomod"],
-      "matchUpdateTypes": ["patch", "minor"],
-      "groupName": "go modules (non-major)",
-      "postUpdateOptions": [
-        "gomodTidy",
-        "gomodUpdateImportPaths"
-      ]
-    },
-    {
-      "matchManagers": ["gomod"],
-      "matchUpdateTypes": ["major"],
-      "groupName": "go modules (major)",
-      "postUpdateOptions": [
-        "gomodTidy",
-        "gomodUpdateImportPaths"
-      ]
-    },
-    {
-    "matchManagers": ["pip_requirements"],
-    "matchUpdateTypes": ["patch", "minor"],
-    "groupName": "python deps (non-major)"
+      "matchDatasources": ["terraform-provider"],
+      "groupName": "terraform providers"
     },
     {
       "matchDatasources": ["docker"],
-      "versioning": "loose"
+      "groupName": "docker images"
+    },
+    {
+      "matchManagers": ["regex"],
+      "matchDatasources": ["docker"],
+      "matchCurrentVersion": "v?\\d+\\.\\d+\\.\\d+",
+      "versioning": "semver",
+      "groupName": "custom docker images (semver) to {{newVersion}}",
+      "commitMessageTopic": "custom docker images (semver) to {{newVersion}}",
+      "commitMessageExtra": "",
+      "separateMajorMinor": false
+    },
+    {
+    "matchManagers": ["regex"],
+    "matchDatasources": ["docker"],
+    "versioning": "loose",
+    "groupName": "custom docker images (loose) to {{newVersion}}",
+    "commitMessageTopic": "custom docker images (loose) to {{newVersion}}",
+    "commitMessageExtra": "",
+    "separateMajorMinor": false,
+    "maxMajorIncrement": 0
     }
   ],
 
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["/.ya?ml$/", "/.sh$/", "/.json$/"],
+      "managerFilePatterns": [
+        "/.ya?ml$/",
+        "/.sh$/",
+        "/.json$/",
+        "/.tf$/",
+        "/.tfvars$/"
+      ],
       "matchStrings": [
-        "(?<depName>[a-z0-9.-]+(?:\/[a-z0-9.-]+)*)[:](?<currentValue>[a-z0-9][a-z0-9._-]*)"
+        "(?<depName>[a-z0-9.-]*\\.[a-z0-9.-]*(?:/[a-z0-9._-]+)+):(?<currentValue>(?:v?\\d[\\w.-]*))"
       ],
       "depNameTemplate": "{{depName}}",
       "currentValueTemplate": "{{currentValue}}",
