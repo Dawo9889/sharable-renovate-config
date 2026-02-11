@@ -6,8 +6,8 @@ echo "🧪 Testing updated regex pattern for Docker images with digests"
 echo ""
 
 # Test cases
-IMAGE1="europe-docker.pkg.dev/kyma-project/prod/dashboard-token-proxy:v20260211-71e24fbd"
-IMAGE2="europe-docker.pkg.dev/kyma-project/prod/test-infra/rotate-service-account:v20260210-3236b3ca@sha256:69e6edc2d4db9343278e3859ce09fd04d9106444c5b70360c1a75ccd57c07806"
+IMAGE1="europe-docker.pkg.dev/kyma-project/prod/dashboard-token-proxy:v20260211-dc8ccc66"
+IMAGE2="europe-docker.pkg.dev/kyma-project/prod/test-infra/rotate-service-account:v20260211-dc8ccc66@sha256:70095ef7d4a3dec6596a1ca44793f28d47427c1a100c1c7f95233f9dc610eebd"
 
 # Updated pattern (simplified for bash testing)
 PATTERN='[a-z0-9.-]+\.[a-z0-9.-]+(/[a-z0-9._-]+)+:v?[0-9][\w.-]+(@sha256:[a-f0-9]+)?'
