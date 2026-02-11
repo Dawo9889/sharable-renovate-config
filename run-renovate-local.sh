@@ -32,7 +32,7 @@ echo ""
 # Run Renovate with the current directory mounted
 docker run --rm \
   -v "$(pwd):/usr/src/app" \
-  -e LOG_LEVEL=info \
+  -e LOG_LEVEL=debug \
   -e RENOVATE_CONFIG_FILE=/usr/src/app/renovate.json \
   renovate/renovate:latest \
   --platform=local \
