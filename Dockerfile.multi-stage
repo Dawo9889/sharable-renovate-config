@@ -1,5 +1,5 @@
 # Multi-stage Dockerfile for testing Renovate with multiple digests
-FROM node:18-alpine@sha256:435dcad253bb5b7f347ebc69c8cc52de7c912eb7241098b920f2fc2d7843183d AS builder
+FROM node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e AS builder
 
 WORKDIR /build
 
@@ -7,7 +7,7 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 # Final stage
-FROM alpine:3.19@sha256:6457d53fb065d6f250e1504b9bc42d5b6c65941d57532c072d929dd0628977d0
+FROM alpine:3.23@sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659
 
 RUN apk add --no-cache nodejs
 
