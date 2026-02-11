@@ -17,9 +17,7 @@
   "ignorePaths": [
     "**/node_modules/**",
     "**/bower_components/**",
-    "**/test*/**",
     "**/cypress/**"
-
   ],
 
   "packageRules": [
@@ -80,7 +78,7 @@
         "/.tfvars$/"
       ],
       "matchStrings": [
-        "(?<depName>[a-z0-9.-]*\\.[a-z0-9.-]*(?:/[a-z0-9._-]+)+):(?<currentValue>v?[0-9][a-z0-9._-]*)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
+        "(?<depName>(?:[a-z0-9.-]+\\.)?[a-z0-9.-]+/[a-z0-9._/-]+):(?<currentValue>v?[0-9][a-z0-9._-]*)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
       ],
       "depNameTemplate": "{{depName}}",
       "currentValueTemplate": "{{currentValue}}",
