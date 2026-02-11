@@ -6,17 +6,17 @@ test-scenario: renovate-digest-testing
 # TEST 1: Tylko tag (bez digestu)
 images-basic:
   # Renovate wykryje update z v1.0.0 → v2.0.0
-  - dawidgala881/renovate-test:v1.0.0
+  - dawidgala881/renovate-test:2.0.0
 
 # TEST 2: Tag + digest
 images-with-digest:
   # Renovate zaktualizuje zarówno tag jak i digest
-  - dawidgala881/renovate-test:v1.0.0@sha256:95c514b39376e77f6657de47c81209a2cd8cb889ed49935a5dceed608d11a482
+  - dawidgala881/renovate-test:2.0.0@sha256:84ab7cf09db3b21b020a1507b71f8bfc0e200659ad69025879ada2e9afc6d5c7
 
 # TEST 3: Multiple versions
 images-multi:
-  - dawidgala881/renovate-test:v1.0.0
-  - dawidgala881/renovate-test:v1.1.0
+  - dawidgala881/renovate-test:2.0.0
+  - dawidgala881/renovate-test:2.0.0
   # Renovate zaproponuje update do v2.0.0 dla obu
 
 # TEST 4: Tylko digest (BEZ tagu)
