@@ -54,8 +54,7 @@
       "commitMessageTopic": "custom docker images (semver) to {{newVersion}}",
       "commitMessageExtra": "",
       "separateMajorMinor": false,
-      "pinDigests": false,
-      "updatePinnedDigests": false
+      "pinDigests": true
     },
     {
     "matchManagers": ["regex"],
@@ -66,14 +65,14 @@
     "commitMessageExtra": "",
     "separateMajorMinor": false,
     "maxMajorIncrement": 0,
-    "pinDigests": false,
-    "updatePinnedDigests": false
+    "pinDigests": true
     }
   ],
 
   "customManagers": [
     {
       "customType": "regex",
+      "description": "Match Docker images with tag (and optional digest)",
       "managerFilePatterns": [
         "/.ya?ml$/",
         "/.sh$/",
@@ -87,6 +86,24 @@
       "depNameTemplate": "{{depName}}",
       "currentValueTemplate": "{{currentValue}}",
       "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "Match Docker images with digest ONLY (no tag) - assumes :latest",
+      "fileMatch": [
+        "\\.ya?ml$",
+        "\\.sh$",
+        "\\.json$",
+        "\\.tf$",
+        "\\.tfvars$"
+      ],
+      "matchStrings": [
+        "(?<depName>(?:[a-z0-9.-]+\\.)?[a-z0-9.-]+/[a-z0-9._/-]+)@(?<currentDigest>sha256:[a-f0-9]+)"
+      ],
+      "depNameTemplate": "{{depName}}",
+      "currentValueTemplate": "latest",
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
     }
   ]
 }

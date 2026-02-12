@@ -1,7 +1,0 @@
-# Test file - digest only format
-test-scenario: digest-only-detection
-
-# Obrazy z TYLKO digestem (bez tagu)
-images:
-  - dawidgala881/renovate-test@sha256:95c514b39376e77f6657de47c81209a2cd8cb889ed49935a5dceed608d11a482
-  - europe-docker.pkg.dev/kyma-project/prod/test-infra/rotate-service-account@sha256:69e6edc2e6a38484287c53c0f3ca5c093f32adb3a965fe8bbdfc4a5c12e33acf

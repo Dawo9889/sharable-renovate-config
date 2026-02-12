@@ -36,8 +36,7 @@ docker run --rm \
   -e RENOVATE_CONFIG_FILE=/usr/src/app/renovate.json \
   renovate/renovate:latest \
   --platform=local \
-  --dry-run=full \
-  --detect-host-rules-from-env=false
+  --dry-run=full
 
 echo ""
 echo "✅ Renovate run completed!"
@@ -45,4 +44,5 @@ echo ""
 echo "💡 Tips:"
 echo "  - Check the logs above for detected dependencies"
 echo "  - To use with GitHub, set RENOVATE_TOKEN environment variable"
-echo "  - Modify renovate-config.js to customize behavior"
+echo "  - For private registries, run ./setup-gcp-auth.sh first"
+
