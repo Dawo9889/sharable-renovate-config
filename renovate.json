@@ -1,0 +1,79 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "onboarding": false,
+  "requireConfig": "ignored",
+  "labels": ["renovate-dependencies"],
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "🤖 Renovate Dependency Dashboard",
+  "dependencyDashboardAutoclose": true,
+  "automerge": true,
+  "automergeType": "pr",
+  "platformAutomerge": true,
+  "rebaseWhen": "conflicted",
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/cypress/**"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["gomod"],
+      "groupName": "All Go dependencies",
+      "rangeStrategy": "bump",
+      "postUpdateOptions": ["gomodUpdateImportPaths"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions",
+      "separateMajorMinor": true,
+      "prPriority": 5
+    },
+    {
+      "matchManagers": ["pip_requirements"],
+      "groupName": "python dependencies"
+    },
+    {
+      "matchDatasources": ["terraform-provider"],
+      "groupName": "terraform providers"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "groupName": "docker images"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchCurrentVersion": "v?\\d+\\.\\d+\\.\\d+",
+      "versioning": "semver",
+      "groupName": "custom docker images (semver) to {{newVersion}}"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "versioning": "loose",
+      "groupName": "custom docker images (loose) to {{newVersion}}"
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["\\.ya?ml$", "\\.sh$", "\\.json$", "\\.tf$", "\\.tfvars$"],
+      "matchStrings": [
+        "(?<depName>(?:[a-z0-9.-]+\\.)?[a-z0-9.-]+/[a-z0-9._/-]+):(?<currentValue>v?[0-9][a-z0-9._-]*)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
+      ],
+      "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["\\.ya?ml$", "\\.sh$", "\\.json$", "\\.tf$", "\\.tfvars$"],
+      "matchStrings": [
+        "(?<depName>(?:[a-z0-9.-]+\\.)?[a-z0-9.-]+/[a-z0-9._/-]+)@(?<currentDigest>sha256:[a-f0-9]+)"
+      ],
+      "depNameTemplate": "{{depName}}",
+      "currentValueTemplate": "latest",
+      "datasourceTemplate": "docker"
+    }
+  ]
+}
