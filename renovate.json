@@ -53,8 +53,7 @@
       "groupName": "custom docker images (semver) to {{newVersion}}",
       "commitMessageTopic": "custom docker images (semver) to {{newVersion}}",
       "commitMessageExtra": "",
-      "separateMajorMinor": false,
-      "pinDigests": true
+      "separateMajorMinor": false
     },
     {
     "matchManagers": ["regex"],
@@ -64,8 +63,7 @@
     "commitMessageTopic": "custom docker images (loose) to {{newVersion}}",
     "commitMessageExtra": "",
     "separateMajorMinor": false,
-    "maxMajorIncrement": 0,
-    "pinDigests": true
+    "maxMajorIncrement": 0
     }
   ],
 
