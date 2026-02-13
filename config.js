@@ -1,7 +1,6 @@
 module.exports = {
   extends: [
     'config:recommended',
-    'customManagers:dockerfileVersions',
     'helpers:pinGitHubActionDigests'
   ],
 
@@ -57,48 +56,37 @@ module.exports = {
       groupName: 'docker images'
     },
     {
-      matchManagers: ['regex'],
+      matchManagers: ['custom.regex'], // Zmienione z 'regex'
       matchDatasources: ['docker'],
       matchCurrentVersion: 'v?\\d+\\.\\d+\\.\\d+',
       versioning: 'semver',
-      groupName: 'custom docker images (semver) to {{newVersion}}',
-      commitMessageTopic: 'custom docker images (semver) to {{newVersion}}',
-      commitMessageExtra: '',
-      separateMajorMinor: false
+      groupName: 'custom docker images (semver) to {{newVersion}}'
     },
     {
-      matchManagers: ['regex'],
+      matchManagers: ['custom.regex'], // Zmienione z 'regex'
       matchDatasources: ['docker'],
       versioning: 'loose',
-      groupName: 'custom docker images (loose) to {{newVersion}}',
-      commitMessageTopic: 'custom docker images (loose) to {{newVersion}}',
-      commitMessageExtra: '',
-      separateMajorMinor: false,
-      maxMajorIncrement: 0
+      groupName: 'custom docker images (loose) to {{newVersion}}'
     }
   ],
 
   customManagers: [
     {
-      customType: 'regex',
-      description: 'Match Docker images with tag (and optional digest)',
-      managerFilePatterns: [
-        '/.ya?ml$/',
-        '/.sh$/',
-        '/.json$/',
-        '/.tf$/',
-        '/.tfvars$/'
+      customType: 'regex', // W nowszych wersjach to zostaje, ale matchManagers musi być 'custom.regex'
+      fileMatch: [
+        '\\.ya?ml$',
+        '\\.sh$',
+        '\\.json$',
+        '\\.tf$',
+        '\\.tfvars$'
       ],
       matchStrings: [
         '(?<depName>(?:[a-z0-9.-]+\\.)?[a-z0-9.-]+/[a-z0-9._/-]+):(?<currentValue>v?[0-9][a-z0-9._-]*)(?:@(?<currentDigest>sha256:[a-f0-9]+))?'
       ],
-      depNameTemplate: '{{depName}}',
-      currentValueTemplate: '{{currentValue}}',
       datasourceTemplate: 'docker'
     },
     {
       customType: 'regex',
-      description: 'Match Docker images with digest ONLY (no tag) - assumes :latest',
       fileMatch: [
         '\\.ya?ml$',
         '\\.sh$',
@@ -109,10 +97,9 @@ module.exports = {
       matchStrings: [
         '(?<depName>(?:[a-z0-9.-]+\\.)?[a-z0-9.-]+/[a-z0-9._/-]+)@(?<currentDigest>sha256:[a-f0-9]+)'
       ],
-      depNameTemplate: '{{depName}}',
+      depNameTemplate: '{{{depName}}}',
       currentValueTemplate: 'latest',
-      datasourceTemplate: 'docker',
-      versioningTemplate: 'docker'
+      datasourceTemplate: 'docker'
     }
   ]
 };
