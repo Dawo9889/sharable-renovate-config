@@ -9,6 +9,10 @@
 
   "labels": ["renovate-dependencies"],
 
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "🤖 Renovate Dependency Dashboard",
+  "dependencyDashboardAutoclose": true,
+
   "automerge": true,
   "automergeType": "pr",
   "platformAutomerge": true,
