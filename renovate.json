@@ -13,6 +13,13 @@
   "dependencyDashboardTitle": "🤖 Renovate Dependency Dashboard",
   "dependencyDashboardAutoclose": true,
 
+  "hostRules": [
+    {
+      "matchHost": "europe-west3-docker.pkg.dev",
+      "hostType": "docker"
+    }
+  ],
+
   "automerge": true,
   "automergeType": "pr",
   "platformAutomerge": true,
