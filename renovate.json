@@ -16,9 +16,7 @@
   "hostRules": [
     {
       "matchHost": "europe-west3-docker.pkg.dev",
-      "hostType": "docker",
-      "username": "_json_key",
-      "password": "{{ process.env.RENOVATE_GCP_DOCKER_PASSWORD }}"
+      "hostType": "docker"
     }
   ],
 
