@@ -4,7 +4,8 @@
   "extends": [
     "config:recommended",
     "customManagers:dockerfileVersions",
-    "helpers:pinGitHubActionDigests"
+    "helpers:pinGitHubActionDigests",
+    "docker:pinDigests"
   ],
 
   "labels": ["renovate-dependencies"],
