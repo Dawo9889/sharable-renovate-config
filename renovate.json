@@ -48,7 +48,7 @@
       "groupName": "docker images"
     },
     {
-      "matchManagers": ["regex"],
+      "matchManagers": ["custom.regex"],
       "matchDatasources": ["docker"],
       "matchCurrentVersion": "v?\\d+\\.\\d+\\.\\d+",
       "versioning": "semver",
@@ -58,7 +58,7 @@
       "separateMajorMinor": false
     },
     {
-    "matchManagers": ["regex"],
+    "matchManagers": ["custom.regex"],
     "matchDatasources": ["docker"],
     "versioning": "loose",
     "groupName": "custom docker images (loose) to {{newVersion}}",
