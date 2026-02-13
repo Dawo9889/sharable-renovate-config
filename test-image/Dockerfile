@@ -1,5 +1,5 @@
 # Test image dla Renovate
-FROM alpine:3.19
+FROM alpine:3.23.3
 
 # Metadane
 LABEL maintainer="test@example.com"
