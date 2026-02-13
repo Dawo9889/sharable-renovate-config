@@ -30,17 +30,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - name: Authenticate to GCP Artifact Registry
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-        run: |
-          # Login to Docker registry - renovatebot/github-action automatically mounts ~/.docker/config.json
-          echo "$GCP_SA_KEY" | docker login -u _json_key --password-stdin https://europe-west3-docker.pkg.dev
-
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@44f24283a60f64273f1294932f16ba61193cccca # v46.1.0
         with:
-          configurationFile: renovate.json
+          configurationFile: config.js
           token: ${{ secrets.RENOVATE_TOKEN}}
         env:
           # For GitHub Enterprise, set this to your GitHub API URL
@@ -48,6 +41,9 @@ jobs:
 
           # Git author for commits
           RENOVATE_GIT_AUTHOR: 'Renovate Bot <bot@renovateapp.com>'
+
+          # GCP Service Account credentials for private Docker registries
+          RENOVATE_GCP_DOCKER_PASSWORD: ${{ secrets.GCP_SA_KEY }}
 
           # Log level - use input from manual trigger or default to info
           LOG_LEVEL: ${{ github.event.inputs.logLevel || 'info' }}
