@@ -64,16 +64,6 @@
         "(?<depName>(?:[a-z0-9.-]+\\.)?[a-z0-9.-]+/[a-z0-9._/-]+):(?<currentValue>v?[0-9][a-z0-9._-]*)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
       ],
       "datasourceTemplate": "docker"
-    },
-    {
-      "customType": "regex",
-      "fileMatch": ["\\.ya?ml$", "\\.sh$", "\\.json$", "\\.tf$", "\\.tfvars$"],
-      "matchStrings": [
-        "(?<depName>(?:[a-z0-9.-]+\\.)?[a-z0-9.-]+/[a-z0-9._/-]+)@(?<currentDigest>sha256:[a-f0-9]+)"
-      ],
-      "depNameTemplate": "{{depName}}",
-      "currentValueTemplate": "latest",
-      "datasourceTemplate": "docker"
     }
   ]
 }
