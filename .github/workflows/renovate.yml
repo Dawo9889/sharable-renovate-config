@@ -36,20 +36,8 @@ jobs:
           configurationFile: config.js
           token: ${{ secrets.RENOVATE_TOKEN}}
         env:
-          # For GitHub Enterprise, set this to your GitHub API URL
-          # RENOVATE_ENDPOINT: https://github.your-company.com/api/v3
-
-          # Git author for commits
           RENOVATE_GIT_AUTHOR: 'Renovate Bot <bot@renovateapp.com>'
-
-          # GCP Service Account credentials for private Docker registries
           RENOVATE_GCP_DOCKER_PASSWORD: ${{ secrets.GCP_SA_KEY }}
-
-          # Log level - use input from manual trigger or default to info
           LOG_LEVEL: ${{ github.event.inputs.logLevel || 'info' }}
-
-          # Dry run option
           RENOVATE_DRY_RUN: ${{ github.event.inputs.dryRun || 'false' }}
-
-          # Ensure Renovate runs in the repository context
           RENOVATE_REPOSITORIES: ${{ github.repository }}
