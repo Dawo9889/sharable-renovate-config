@@ -85,6 +85,22 @@
       "depNameTemplate": "{{depName}}",
       "currentValueTemplate": "{{currentValue}}",
       "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/.ya?ml$/",
+        "/.sh$/",
+        "/.json$/",
+        "/.tf$/",
+        "/.tfvars$/"
+      ],
+      "matchStrings": [
+        "(?<depName>(?:[a-z0-9.-]+\\.)?[a-z0-9.-]+/[a-z0-9._/-]+)@(?<currentDigest>sha256:[a-f0-9]+)"
+      ],
+      "depNameTemplate": "{{depName}}",
+      "currentValueTemplate": "latest",
+      "datasourceTemplate": "docker"
     }
   ]
 }
