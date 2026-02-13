@@ -27,7 +27,7 @@ images-digest-only:
 # TEST 5: Stary digest dla v2.0.0 (symulacja przestarzałego digestu)
 # Renovate wykryje że v2.0.0 ma nowy digest i zaproponuje update
 images-stale-digest:
-  - dawidgala881/renovate-test:v2.0.0@sha256:95c514b39376e77f6657de47c81209a2cd8cb889ed49935a5dceed608d11a482
+  - dawidgala881/renovate-test:v2.0.0@sha256:9418d6ab2106455e396dbb938ac8a079fb602f1e1061d8e6e17d2dfe3055c829
   # ^^ to jest digest v1.0.0, ale tag wskazuje v2.0.0 - Renovate powinien to wykryć!
 
 
