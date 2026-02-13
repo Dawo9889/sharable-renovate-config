@@ -5,16 +5,16 @@ test-scenario: renovate-gcp-artifact-registry-testing
 
 # TEST 1: Basic tag (no digest) - Renovate should detect update from v1.0.0 → v2.0.0
 images-basic:
-  - europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:v1.0.0
+  - europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:v2.0.0
 
 # TEST 2: Tag + digest - Renovate should update both tag and digest
 images-with-digest:
-  - europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:v1.0.0@sha256:1e864016bf5c6c7727a98149f4f64099d5451629245bcadc211dd2ec7c545978
+  - europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:v2.0.0@sha256:3e5e0205bc9494f280afb9e62de3b2e979475b16267ed71d2642496281c17bde
 
 # TEST 3: Multiple versions to update
 images-multi:
-  - europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:v1.0.0
-  - europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:v1.1.0
+  - europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:v2.0.0
+  - europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:v2.0.0
   # Renovate should propose updates to v2.0.0 for both
 
 # TEST 4: Digest only (no tag) - assumes :latest
