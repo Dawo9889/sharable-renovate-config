@@ -10,14 +10,6 @@
   "labels": ["renovate-dependencies"],
 
   "rebaseWhen": "conflicted",
-  "hostRules": [
-    {
-      "matchHost": "europe-west3-docker.pkg.dev",
-      "hostType": "docker",
-      "username": "_json_key",
-      "password": ""
-    }
-  ],
 
   "ignorePaths": [
     "**/node_modules/**",
