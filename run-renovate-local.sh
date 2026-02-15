@@ -22,6 +22,9 @@ export LOG_LEVEL=debug
 # You can optionally set a token for GitHub API (increases rate limits)
 # export RENOVATE_TOKEN=your_github_token_here
 
+# For private GCP Artifact Registry, set GCP_SA_KEY with your service account JSON
+# export GCP_SA_KEY=$(cat renovate-sa-key.json)
+
 echo "📦 Pulling latest Renovate image..."
 docker pull renovate/renovate:latest
 
@@ -33,7 +36,8 @@ echo ""
 docker run --rm \
   -v "$(pwd):/usr/src/app" \
   -e LOG_LEVEL=debug \
-  -e RENOVATE_CONFIG_FILE=/usr/src/app/renovate.json \
+  -e RENOVATE_CONFIG_FILE=/usr/src/app/config.js \
+  ${GCP_SA_KEY:+-e RENOVATE_GCP_DOCKER_PASSWORD="$GCP_SA_KEY"} \
   renovate/renovate:latest \
   --platform=local \
   --dry-run=full

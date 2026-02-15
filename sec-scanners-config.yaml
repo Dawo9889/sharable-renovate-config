@@ -3,10 +3,10 @@ kind: kyma
 bdba:
     - europe-docker.pkg.dev/kyma-project/prod/dashboard-token-proxy:v20260211-71e24fbd
     - europe-docker.pkg.dev/kyma-project/prod/github-webhook-gateway:v20260211-71e24fbd
-    - europe-docker.pkg.dev/kyma-project/prod/test-infra/rotate-service-account@sha256:69e6edc2d4db9343278e3859ce09fd04d9106444c5b70360c1a75ccd57c07806
+    - europe-docker.pkg.dev/kyma-project/prod/test-infra/rotate-service-account:v20260210-3236b3ca
     - europe-docker.pkg.dev/kyma-project/prod/test-infra/service-account-keys-cleaner:v20260210-3236b3ca
-    - europe-docker.pkg.dev/kyma-project/prod/test-infra/signify-secret-rotator:v20260211-d483a5c4
-    - europe-docker.pkg.dev/kyma-project/prod/test-infra/slackmessagesender:v20260205-37382cc9
+    - europe-docker.pkg.dev/kyma-project/prod/test-infra/signify-secret-rotator:v20260213-d0950bd4
+    - europe-docker.pkg.dev/kyma-project/prod/test-infra/slackmessagesender:v20260213-d0950bd4
 mend:
     language: golang-mod
     exclude:

@@ -9,6 +9,17 @@
 
   "labels": ["renovate-dependencies"],
 
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "🤖 Renovate Dependency Dashboard",
+  "dependencyDashboardAutoclose": true,
+
+  "hostRules": [
+    {
+      "matchHost": "europe-west3-docker.pkg.dev",
+      "hostType": "docker"
+    }
+  ],
+
   "automerge": true,
   "automergeType": "pr",
   "platformAutomerge": true,
@@ -18,7 +29,6 @@
     "**/node_modules/**",
     "**/bower_components/**",
     "**/cypress/**"
-
   ],
 
   "packageRules": [
@@ -47,18 +57,17 @@
       "groupName": "docker images"
     },
     {
-      "matchManagers": ["custom.regex"],
+      "matchManagers": ["regex"],
       "matchDatasources": ["docker"],
       "matchCurrentVersion": "v?\\d+\\.\\d+\\.\\d+",
       "versioning": "semver",
       "groupName": "custom docker images (semver) to {{newVersion}}",
       "commitMessageTopic": "custom docker images (semver) to {{newVersion}}",
       "commitMessageExtra": "",
-      "separateMajorMinor": false,
-      "pinDigests": true
+      "separateMajorMinor": false
     },
     {
-    "matchManagers": ["custom.regex"],
+    "matchManagers": ["regex"],
     "matchDatasources": ["docker"],
     "versioning": "loose",
     "groupName": "custom docker images (loose) to {{newVersion}}",
@@ -72,6 +81,7 @@
   "customManagers": [
     {
       "customType": "regex",
+      "description": "Match Docker images with tag (and optional digest)",
       "managerFilePatterns": [
         "/.ya?ml$/",
         "/.sh$/",
@@ -82,7 +92,27 @@
       "matchStrings": [
         "(?<depName>(?:[a-z0-9.-]+\\.)?[a-z0-9.-]+/[a-z0-9._/-]+):(?<currentValue>v?[0-9][a-z0-9._-]*)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
       ],
+      "depNameTemplate": "{{depName}}",
+      "currentValueTemplate": "{{currentValue}}",
       "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "Match Docker images with digest ONLY (no tag) - assumes :latest",
+      "fileMatch": [
+        "\\.ya?ml$",
+        "\\.sh$",
+        "\\.json$",
+        "\\.tf$",
+        "\\.tfvars$"
+      ],
+      "matchStrings": [
+        "(?<depName>(?:[a-z0-9.-]+\\.)?[a-z0-9.-]+/[a-z0-9._/-]+)@(?<currentDigest>sha256:[a-f0-9]+)"
+      ],
+      "depNameTemplate": "{{depName}}",
+      "currentValueTemplate": "latest",
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
     }
   ]
 }

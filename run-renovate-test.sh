@@ -6,7 +6,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-TEST_FILE="test-image/renovate-test.yaml"
+TEST_FILE="test-image/renovate-test-gcp.yaml"
 
 echo "════════════════════════════════════════════════════════════════"
 echo "🔄 RENOVATE TEST - tylko ${TEST_FILE}"
@@ -38,10 +38,19 @@ echo "🚀 Uruchamiam Renovate..."
 echo "────────────────────────────────────────────────────────────────"
 echo ""
 
+# Sprawdź czy GCP_SA_KEY jest ustawiony
+if [ -n "$GCP_SA_KEY" ]; then
+    echo "✅ GCP_SA_KEY jest ustawiony (uwierzytelnianie do prywatnych registry)"
+else
+    echo "⚠️  GCP_SA_KEY nie jest ustawiony (pomiń jeśli używasz tylko publicznych obrazów)"
+fi
+echo ""
+
 docker run --rm \
     -v "${SCRIPT_DIR}:/usr/src/app" \
     -e LOG_LEVEL=debug \
-    -e RENOVATE_CONFIG_FILE=/usr/src/app/renovate.json \
+    -e RENOVATE_CONFIG_FILE=/usr/src/app/config.js \
+    ${GCP_SA_KEY:+-e RENOVATE_GCP_DOCKER_PASSWORD="$GCP_SA_KEY"} \
     renovate/renovate:latest \
         --platform=local \
         --dry-run=full \

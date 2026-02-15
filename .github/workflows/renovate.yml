@@ -1,0 +1,43 @@
+name: Renovate
+
+on:
+  schedule:
+    # Run every day at 2:00 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: false
+        default: 'debug'
+        type: choice
+        options:
+          - debug
+          - info
+      dryRun:
+        description: 'Dry run'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@44f24283a60f64273f1294932f16ba61193cccca # v46.1.0
+        with:
+          configurationFile: config.js
+          token: ${{ secrets.RENOVATE_TOKEN}}
+        env:
+          RENOVATE_GIT_AUTHOR: 'Renovate Bot <bot@renovateapp.com>'
+          RENOVATE_GCP_DOCKER_PASSWORD: ${{ secrets.GCP_SA_KEY }}
+          LOG_LEVEL: ${{ github.event.inputs.logLevel || 'info' }}
+          RENOVATE_DRY_RUN: ${{ github.event.inputs.dryRun || 'false' }}
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
