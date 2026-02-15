@@ -9,15 +9,10 @@
 
   "labels": ["renovate-dependencies"],
 
+  "automerge": true,
+  "automergeType": "pr",
+  "platformAutomerge": true,
   "rebaseWhen": "conflicted",
-  "hostRules": [
-    {
-      "matchHost": "europe-west3-docker.pkg.dev",
-      "hostType": "docker",
-      "username": "_json_key",
-      "password": ""
-    }
-  ],
 
   "ignorePaths": [
     "**/node_modules/**",
@@ -56,8 +51,8 @@
       "matchDatasources": ["docker"],
       "matchCurrentVersion": "v?\\d+\\.\\d+\\.\\d+",
       "versioning": "semver",
-      "groupName": "custom docker images (loose) {{newVersion}}{{newDigest}}",
-      "commitMessageTopic": "custom docker images (loose) {{newVersion}}{{newDigest}}",
+      "groupName": "custom docker images (semver) to {{newVersion}}",
+      "commitMessageTopic": "custom docker images (semver) to {{newVersion}}",
       "commitMessageExtra": "",
       "separateMajorMinor": false,
       "pinDigests": true
@@ -66,8 +61,8 @@
     "matchManagers": ["custom.regex"],
     "matchDatasources": ["docker"],
     "versioning": "loose",
-    "groupName": "custom docker images (loose) {{newVersion}}{{newDigest}}",
-    "commitMessageTopic": "custom docker images (loose) {{newVersion}}{{newDigest}}",
+    "groupName": "custom docker images (loose) to {{newVersion}}",
+    "commitMessageTopic": "custom docker images (loose) to {{newVersion}}",
     "commitMessageExtra": "",
     "separateMajorMinor": false,
     "maxMajorIncrement": 0
