@@ -6,7 +6,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-TEST_FILE="test-image/renovate-test-gcp.yaml"
+TEST_FILE="test-image/renovate-test.yaml"
 
 echo "════════════════════════════════════════════════════════════════"
 echo "🔄 RENOVATE TEST - tylko ${TEST_FILE}"
