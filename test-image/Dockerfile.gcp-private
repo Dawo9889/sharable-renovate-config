@@ -1,0 +1,19 @@
+# Test Dockerfile for Dependabot with private Google Artifact Registry images
+# This demonstrates Dependabot's ability to update images from private GCP registry
+
+# TEST 1: Basic tag - Dependabot should detect updates
+FROM europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:v2.0.0 AS test-basic
+
+# TEST 2: Tag with digest - Dependabot should update both tag and digest
+FROM europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:v2.0.0@sha256:3e5e0205bc9494f280afb9e62de3b2e979475b16267ed71d2642496281c17bde AS test-with-digest
+
+# TEST 3: Stale digest - Dependabot should detect mismatch
+FROM europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:v2.0.0@sha256:1e864016bf5c6c7727a98149f4f64099d5451629245bcadc211dd2ec7c545978 AS test-stale-digest
+
+# Final stage using latest
+FROM europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:latest
+
+LABEL maintainer="test@example.com"
+LABEL description="Test image for Dependabot with private GCP registry"
+
+CMD ["echo", "Dependabot can update these private images"]
