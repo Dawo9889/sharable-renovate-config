@@ -1,5 +1,5 @@
 # Multi-stage Dockerfile for testing Renovate with multiple digests
-FROM node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e AS builder
+FROM node:25-alpine@sha256:b9b5737eabd423ba73b21fe2e82332c0656d571daf1ebf19b0f89d0dd0d3ca93 AS builder
 
 WORKDIR /build
 
