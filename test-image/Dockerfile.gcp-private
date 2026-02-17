@@ -3,10 +3,10 @@
 # Using canonical semver format (without 'v' prefix) for better Dependabot detection
 
 # TEST 1: Basic tag - Dependabot should detect updates
-FROM europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:1.0.0 AS test-basic
+FROM europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:2.0.0 AS test-basic
 
 # TEST 2: Tag with digest - Dependabot should update both tag and digest
-FROM europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:1.0.0@sha256:1e864016bf5c6c7727a98149f4f64099d5451629245bcadc211dd2ec7c545978 AS test-with-digest
+FROM europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:2.0.0@sha256:3e5e0205bc9494f280afb9e62de3b2e979475b16267ed71d2642496281c17bde AS test-with-digest
 
 # TEST 3: Stale digest - Dependabot should detect mismatch
 FROM europe-west3-docker.pkg.dev/sap-kyma-neighbors-dev/renovate-private-registry-test/renovate-test:2.0.0@sha256:3e5e0205bc9494f280afb9e62de3b2e979475b16267ed71d2642496281c17bde AS test-stale-digest
