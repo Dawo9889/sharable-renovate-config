@@ -1,0 +1,16 @@
+name: test-generate-timestamp-tag
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-generate-tag:
+    uses: ./.github/workflows/reusable-generate-timestamp-tag.yml
+
+  print-tag:
+    needs: call-generate-tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print generated tag
+        run: |
+          echo "Generated tag: ${{ needs.call-generate-tag.outputs.tag }}"
