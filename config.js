@@ -1,13 +1,21 @@
 module.exports = {
 
-  hostRules: process.env.RENOVATE_GCP_DOCKER_PASSWORD
-    ? [
-        {
-          matchHost: 'europe-west3-docker.pkg.dev',
-          hostType: 'docker',
-          username: '_json_key_base64',
-          password: process.env.RENOVATE_GCP_DOCKER_PASSWORD
-        }
-      ]
-    : []
+  // ---------------------------------------------------------------------------
+  // Host rules — credentials for private registries / GitHub Enterprise.
+  // In pipeline mode, inject these via environment variables (CI secrets).
+  // ---------------------------------------------------------------------------
+  hostRules: [
+    // Private GitHub Enterprise — github.tools.sap
+    // Required for Renovate to resolve Go modules hosted on github.tools.sap
+    // Pipeline: set RENOVATE_SAP_GITHUB_TOKEN as a CI secret
+    ...(process.env.RENOVATE_SAP_GITHUB_TOKEN
+      ? [
+          {
+            matchHost: 'github.tools.sap',
+            token: process.env.RENOVATE_SAP_GITHUB_TOKEN,
+          },
+        ]
+      : []),
+  ],
+
 };
