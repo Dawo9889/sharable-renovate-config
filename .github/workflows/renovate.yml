@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@44f24283a60f64273f1294932f16ba61193cccca # v46.1.0
@@ -40,3 +40,4 @@ jobs:
           LOG_LEVEL: ${{ github.event.inputs.logLevel || 'info' }}
           RENOVATE_DRY_RUN: ${{ github.event.inputs.dryRun || 'false' }}
           RENOVATE_REPOSITORIES: ${{ github.repository }}
+          RENOVATE_SAP_GITHUB_TOKEN: ${{ secrets.RENOVATE_SAP_GITHUB_TOKEN }}
