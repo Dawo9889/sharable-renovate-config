@@ -6,6 +6,7 @@ go 1.26.1
 require (
 	github.tools.sap/kyma/neighbors-contracts v0.0.0-20260423060355-772d2d4813ec
 	github.tools.sap/dawid-test/renovate-test/go/logging v1.0.0
+	github.tools.sap/dawid-test/renovate-test v0.1.0
 )
 
 // Public dependency — intentionally outdated so Renovate will continuously propose bumps
