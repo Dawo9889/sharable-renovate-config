@@ -11,8 +11,7 @@ module.exports = {
     ...(process.env.RENOVATE_SAP_GITHUB_TOKEN
       ? [
           {
-            matchHost: 'https://github.tools.sap/dawid-test/renovate-test',
-            hostType: 'github-tags',
+            matchHost: 'github.tools.sap',
             token: process.env.RENOVATE_SAP_GITHUB_TOKEN,
           },
         ]
