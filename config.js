@@ -14,12 +14,7 @@ module.exports = {
             matchHost: 'github.tools.sap',
             hostType: 'github',
             token: process.env.RENOVATE_SAP_GITHUB_TOKEN,
-          },
-          {
-            matchHost: 'github.tools.sap',
-            hostType: 'github-tags',
-            token: process.env.RENOVATE_SAP_GITHUB_TOKEN,
-          },
+          }
         ]
       : []),
   ],
