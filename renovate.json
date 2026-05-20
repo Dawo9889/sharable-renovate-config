@@ -20,11 +20,6 @@
 
   "packageRules": [
     {
-      "matchDatasources": ["go"],
-      "matchPackagePrefixes": ["github.tools.sap/"],
-      "registryUrls": ["https://github.tools.sap"]
-    },
-    {
       "matchManagers": ["gomod"],
       "groupName": "All Go dependencies",
       "rangeStrategy": "bump",

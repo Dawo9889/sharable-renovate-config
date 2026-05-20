@@ -2,6 +2,8 @@ github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
+github.tools.sap/dawid-test/renovate-test v0.1.0 h1:47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+github.tools.sap/dawid-test/renovate-test v0.1.0/go.mod h1:zw4TAre8EG70jC/9NAtKWrYA2mBYjJsbZGKdCSE/NEE=
 github.tools.sap/dawid-test/renovate-test/go/logging v1.0.0 h1:OnaQugO547nXFVozkXiRPBmPTrps+Ka2hilQ8+G8FkY=
 github.tools.sap/dawid-test/renovate-test/go/logging v1.0.0/go.mod h1:GRdoyok6IhIAGuIacSmZ0+AIdPQqbY72Ctx/EVverdU=
 github.tools.sap/kyma/neighbors-contracts v0.0.0-20260423060355-772d2d4813ec/go.mod h1:ZF8uRctykUF09q+2kUCw2eCUhb1ox2S1fCO5t0n7NMk=
