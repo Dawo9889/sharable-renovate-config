@@ -1,6 +1,6 @@
 module sharable-renovate-config
 
-go 1.26.1
+go 1.25.1
 
 // Private GitHub Enterprise dependency — testing Renovate access to github.tools.sap
 require (
