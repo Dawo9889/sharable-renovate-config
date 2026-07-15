@@ -6,6 +6,9 @@
     "customManagers:dockerfileVersions",
     "helpers:pinGitHubActionDigests"
   ],
+  "automerge": true,
+  "automergeType": "pr",
+  "platformAutomerge": true,
 
   "labels": ["renovate-dependencies"],
 
